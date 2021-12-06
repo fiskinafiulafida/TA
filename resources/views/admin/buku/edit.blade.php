@@ -70,7 +70,7 @@
 					<div class="row">
 						<div class="col-sm-12 col-xs-12">
 							<div class="form-wrap">
-                                <form action="{{ route('bukuAdmin.update',$buku->id_buku) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('bukuAdmin.update',$buku->id_buku) }}" method="POST" enctype="multipart/data">
                                     @csrf
                                     @method('PUT')
 									<div class="form-body">

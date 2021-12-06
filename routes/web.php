@@ -7,6 +7,8 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\KetersediaanController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\KontakMemController;
+use App\Http\Controllers\AboutMemController;
 use Illuminate\Http\Request; 
 
 /*
@@ -36,6 +38,10 @@ Route::resource('ketersediaanAdmin',KetersediaanController::class);
 Route::resource('bukuAdmin',BukuController::class);
 // member admin
 Route::resource('memberAdmin',MemberController::class);
+// kontak member
+Route::resource('kontakMember',KontakMemController::class);
+// about member
+Route::resource('aboutMember',AboutMemController::class);
 
 Auth::routes();
 

@@ -129,25 +129,39 @@ class BukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'judul_buku' => 'required',
-            'isbn'  => 'required',
+        
+            // $this->validate($request, [
+                
             
-            ]);
-            $buku = m_bukuAdmin::with('kategori')->where('id_buku', $id)->first();
-            $file = $request->file('cover_img');
+            // ]);
+            $request->validated();
+            $buku = m_bukuAdmin::where('id_buku', $id)->first();
+            if($request->hasFile('image')){
+                $path = 'image'.$lawyer->picture;
+                if(File::exists($path)){
+                    File::delete($path);
+                }
+                $file = $request->file('images');
+                $ext = $file->getClientOriginalExtension();
+                $cover_img = time().'.'.$ext;
+                $file->move('image', $cover_img);
+                $buku->picture = $cover_img;
+            }
+
+            // $buku = m_bukuAdmin::with('kategori')->where('id_buku', $id)->first();
+            // $file = $request->file('cover_img');
             
-            $buku = new m_bukuAdmin;
-            $kategori = new m_katAdmin;
-            $ketersediaan = new m_ketersediaanAdmin;
+            // $buku = new m_bukuAdmin;
+            // $kategori = new m_katAdmin;
+            // $ketersediaan = new m_ketersediaanAdmin;
             
             $buku->penerbit = $request->penerbit;
             $buku->judul_buku = $request->judul_buku;
             $buku->isbn  = $request->isbn;
             $buku->kategori   = $request->kategori;
             $buku->ketersediaan   = $request->ketersediaan;
-            $buku->cover_img  = $file->getClientOriginalName();
-            $tujuan_upload = 'image';
+            // $buku->cover_img  = $file->getClientOriginalName();
+            // $tujuan_upload = 'image';
             
             $buku->save();
 
