@@ -29,11 +29,11 @@
 				<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="{{asset('admin/dist/img/user1.png')}}" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
 				<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
 					<li>
-						<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+						<a><i class="zmdi zmdi-account"></i><span>Profile</span></a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="#"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
+						<a href="halLogin2"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
 					</li>
 				</ul>
 			</li>
@@ -70,7 +70,7 @@
 					<div class="row">
 						<div class="col-sm-12 col-xs-12">
 							<div class="form-wrap">
-                                <form action="{{ route('memberAdmin.update', $edit->id_anggota) }}" method="POST">
+                                <form action="{{ route('memberAdmin.update', $edit->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
 									<div class="form-body">
@@ -79,20 +79,12 @@
 										<div class="row">
 											<div class="col-md-12 ">
 												<div class="form-group">
-													<label class="control-label mb-5"> Nama Anggota: </label>
-													<input type="text" name="nama_anggota" value="{{ $edit->nama_anggota }}" class="form-control">
+													<label class="control-label mb-5"> Nama : </label>
+													<input type="text" name="name" value="{{ $edit->name }}" class="form-control">
 												</div>
                                                 <div class="form-group">
 													<label class="control-label mb-10 text-left">Email : </label>
 													<input type="text" name="email" value="{{ $edit->email }}" class="form-control">
-												</div>
-                                                <div class="form-group">
-													<label class="control-label mb-10 text-left">Username : </label>
-													<input type="text" name="username" value="{{ $edit->username }}" class="form-control">
-												</div>
-                                                <div class="form-group">
-													<label class="control-label mb-10 text-left">Password : </label>
-													<input type="text" name="password" value="{{ $edit->password }}" class="form-control">
 												</div>
 											</div>
 										</div>

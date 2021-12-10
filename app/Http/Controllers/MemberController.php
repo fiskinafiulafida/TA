@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\m_memberAdmin;
+// use App\Models\m_memberAdmin;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -13,7 +14,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $index = m_memberAdmin::all();
+        $index = User::all();
         return view('admin.member.index', compact('index'));
     }
 
@@ -35,16 +36,16 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        // $request->validate([
 
-            'nama_anggota' => 'required',
-            'email' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-        m_memberAdmin::create($request->all());
+        //     'nama_anggota' => 'required',
+        //     'email' => 'required',
+        //     'username' => 'required',
+        //     'password' => 'required',
+        // ]);
+        // User::create($request->all());
 
-        return redirect()->route('memberAdmin.index')->with('succes','Data Berhasil di Input');
+        // return redirect()->route('memberAdmin.index')->with('succes','Data Berhasil di Input');
     }
 
     /**
@@ -55,7 +56,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $show = m_memberAdmin::find($id);
+        $show = User::find($id);
         return view('admin.member.detail', compact('show'));
     }
 
@@ -67,7 +68,7 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        $edit = m_memberAdmin::find($id);
+        $edit = User::find($id);
         return view('admin.member.edit', compact('edit'));
     }
 
@@ -81,12 +82,10 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_anggota' => '',
+            'name' => '',
             'email' => '',
-            'username' => '',
-            'password' => '',
         ]);
-        m_memberAdmin::find($id)->update($request->all());
+        User::find($id)->update($request->all());
         return redirect()->route('memberAdmin.index')->with('succes','Member Berhasil di Update');
     }
 
@@ -99,7 +98,7 @@ class MemberController extends Controller
     public function destroy($id)
     {
         {
-            m_memberAdmin::find($id)->delete();
+            User::find($id)->delete();
             return redirect()->route('memberAdmin.index')-> with('success', 'Member Berhasil Dihapus');
         }
     }

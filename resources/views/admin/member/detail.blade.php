@@ -29,11 +29,11 @@
 				<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="{{asset('admin/dist/img/user1.png')}}" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
 				<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
 					<li>
-						<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+						<a><i class="zmdi zmdi-account"></i><span>Profile</span></a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="#"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
+						<a href="halLogin2"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
 					</li>
 				</ul>
 			</li>
@@ -78,17 +78,17 @@
 								<div class="row">
                                     <div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label col-md-3"> ID Anggota: </label>
+											<label class="control-label col-md-3"> ID : </label>
 											<div class="col-md-9">
-												<p class="form-control-static"> {{$show->id_anggota}} </p>
+												<p class="form-control-static"> {{$show->id}} </p>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label col-md-3"> Nama Anggota: </label>
+											<label class="control-label col-md-3"> Nama : </label>
 											<div class="col-md-9">
-												<p class="form-control-static"> {{$show->nama_anggota}} </p>
+												<p class="form-control-static"> {{$show->name}} </p>
 											</div>
 										</div>
 									</div>
@@ -102,20 +102,20 @@
 									</div>
                                     <div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label col-md-3"> Username : </label>
+											<label class="control-label col-md-3"> Level : </label>
 											<div class="col-md-9">
-												<p class="form-control-static"> {{$show->username}} </p>
+												<p class="form-control-static"> {{$show->level}} </p>
 											</div>
 										</div>
 									</div>
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label col-md-3"> Password : </label>
 											<div class="col-md-9">
 												<p class="form-control-static"> {{$show->password}} </p>
 											</div>
 										</div>
-									</div>
+									</div> -->
                                     <div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label col-md-3"> Create : </label>

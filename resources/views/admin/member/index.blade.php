@@ -29,11 +29,11 @@
 				<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="{{asset('admin/dist/img/user1.png')}}" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
 				<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
 					<li>
-						<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+						<a><i class="zmdi zmdi-account"></i><span>Profile</span></a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="#"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
+						<a href="halLogin2"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
 					</li>
 				</ul>
 			</li>
@@ -95,20 +95,20 @@
 									<table id="datable_1" class="table table-hover display" >
 										<thead>
 											<tr>
-												<th>Id Anggota</th>
-												<th>Nama Anggota</th>
+												<th>Id</th>
+												<th>Username</th>
 												<th>Email </th>
-                                                <th>Username </th>
+												<th>Level</th>
 												<th>Create</th>
 												<th>Aksi</th>
 											</tr>
 										</thead>
 										<tfoot>
 											<tr>
-												<th>Id Anggota</th>
-												<th>Nama Anggota</th>
+												<th>Id</th>
+												<th>Username</th>
 												<th>Email </th>
-                                                <th>Username </th>
+												<th>Level</th>
 												<th>Create</th>
 												<th>Aksi</th>
 											</tr>
@@ -116,15 +116,15 @@
 										<tbody>
 											@foreach ($index as $member)
 											<tr>
-                                                <td>{{ $member->id_anggota }}</td>
-												<td>{{ $member->nama_anggota }}</td>
+                                                <td>{{ $member->id }}</td>
+												<td>{{ $member->name }}</td>
 												<td>{{ $member->email }}</td>
-												<td>{{ $member->username }}</td>
+												<td>{{ $member->level }}</td>
 												<td>{{ $member->created_at }}</td>
 												<td>
-													<form action="{{ route('memberAdmin.destroy', $member->id_anggota) }}" method="POST">
-													    <a href="{{ route('memberAdmin.show',$member->id_anggota) }}" class="btn  btn-success btn-rounded">Detail</a>
-													    <a href="{{ route('memberAdmin.edit',$member->id_anggota) }}" class="btn btn-warning btn-rounded">Edit</a>
+													<form action="{{ route('memberAdmin.destroy', $member->id) }}" method="POST">
+													    <a href="{{ route('memberAdmin.show',$member->id) }}" class="btn  btn-success btn-rounded">Detail</a>
+													    <a href="{{ route('memberAdmin.edit',$member->id) }}" class="btn btn-warning btn-rounded">Edit</a>
 													    @csrf
                     								    @method('DELETE')
 													    <button type="submit" class="btn btn-danger btn-rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
