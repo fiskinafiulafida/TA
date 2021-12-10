@@ -9,6 +9,9 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\KontakMemController;
 use App\Http\Controllers\AboutMemController;
+use App\Http\Controllers\HomeMemController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request; 
 
 /*
@@ -42,6 +45,17 @@ Route::resource('memberAdmin',MemberController::class);
 Route::resource('kontakMember',KontakMemController::class);
 // about member
 Route::resource('aboutMember',AboutMemController::class);
+// home member
+Route::resource('homeMember',HomeMemController::class);
+
+// login
+Route::post('halLogin',[LoginController::class, 'index'] );
+Route::get('halLogin2',[LoginController::class, 'tampilkan'] );
+
+// register
+Route::post('halRegister',[RegisterController::class, 'store'] );
+Route::get('halRegister2',[RegisterController::class, 'tampilkan'] );
+
 
 Auth::routes();
 

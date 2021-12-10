@@ -1,6 +1,6 @@
 @extends('layouts/mainMember')
 
-@section('title','Halaman Kontak Member')
+@section('title','Halaman About Member')
 @section('banner')
     <img src="{{asset('member/img/simple-house-logo.png')}}" alt="Logo" class="tm-site-logo" /> 
 	<div class="tm-site-text-box">
@@ -10,9 +10,12 @@
 @endsection
 @section('nav')
     <ul class="tm-nav-ul">
-		<li class="tm-nav-li"><a href="index.html" class="tm-nav-link ">Home</a></li>
+		<li class="tm-nav-li"><a href="homeMember" class="tm-nav-link ">Home</a></li>
 		<li class="tm-nav-li"><a href="aboutMember" class="tm-nav-link active">About</a></li>
 		<li class="tm-nav-li"><a href="kontakMember" class="tm-nav-link ">Contact</a></li>
+		<li class="tm-nav-li">
+			
+		</li>
 	</ul>
 @endsection
 @section('header')

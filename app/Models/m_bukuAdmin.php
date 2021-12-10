@@ -17,5 +17,9 @@ class m_bukuAdmin extends Model
     public function ketersediaan(){
         return $this->belongsTo(m_ketersediaanAdmin::class);
     }
+
+    public function buku(){
+        return $this->hasMany(m_bukuAdmin::class);
+    }
     use HasFactory;
 }

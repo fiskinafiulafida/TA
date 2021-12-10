@@ -47,18 +47,11 @@ https://templatemo.com/tm-539-simple-house
 			
 			<div class="tm-paging-links">
                 @yield('container')
-				<!-- <nav>
-					<ul>
-						<li class="tm-paging-item"><a href="#" class="tm-paging-link active">Pizza</a></li>
-						<li class="tm-paging-item"><a href="#" class="tm-paging-link">Salad</a></li>
-						<li class="tm-paging-item"><a href="#" class="tm-paging-link">Noodle</a></li>
-					</ul>
-				</nav> -->
 			</div>
 
 			<!-- Gallery -->
 			<div class="row tm-gallery">
-				
+				@yield('gallery')
 			</div>
 			<div class="tm-section tm-container-inner">
 				@yield('maps')
