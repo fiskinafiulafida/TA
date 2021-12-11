@@ -10,10 +10,9 @@
 @endsection
 @section('nav')
     <ul class="tm-nav-ul">
-		<li class="tm-nav-li"><a href="homeMember" class="tm-nav-link ">Home</a></li>
-		<li class="tm-nav-li"><a href="aboutMember" class="tm-nav-link">About</a></li>
-		<!-- <li class="tm-nav-li"><a href="katalogMember" class="tm-nav-link">Katalog Buku</a></li> -->
-		<li class="tm-nav-li"><a href="kontakMember" class="tm-nav-link active">Contact</a></li>
+		<li class="tm-nav-li"><a href="{{ route('homeMember.index') }}" class="tm-nav-link ">Home</a></li>
+		<li class="tm-nav-li"><a href="{{ route('aboutMember.index') }}" class="tm-nav-link">About</a></li>
+		<li class="tm-nav-li"><a href="{{ route('kontakMember.index') }}" class="tm-nav-link active">Contact</a></li>
 	</ul>
 @endsection
 @section('header')

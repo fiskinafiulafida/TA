@@ -46,7 +46,8 @@ class HomeMemController extends Controller
      */
     public function show($id)
     {
-        //
+        $show = m_bukuAdmin::find($id);
+        return view('member.home.detail', compact('show'));
     }
 
     /**
@@ -81,5 +82,16 @@ class HomeMemController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function buku_kategori($kategori){
+        $data = DB::table('table_buku_admin')
+        ->join('table_kategori', 'table_buku_admin.kategori', '=', 'table_kategori.kategori')->where('kategori', $kategori)
+        ->join('table_ketersediaan_admin', 'table_buku_admin.ketersediaan', '=', 'table_ketersediaan_admin.ketersediaan')
+        ->select('table_buku_admin.id_buku','table_buku_admin.penerbit','table_buku_admin.judul_buku', 'table_buku_admin.isbn', 
+        'table_kategori.deskripsi as kategori','table_ketersediaan_admin.deskripsi as ketersediaan', 'table_buku_admin.cover_img')->get();
+
+        // $data = \DB::table('table_buku_admin')->where('kategori', $kategori_id)->get();
+        return view('member.home.kategori', compact('data'));
     }
 }

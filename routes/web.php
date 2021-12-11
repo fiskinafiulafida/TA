@@ -47,6 +47,8 @@ Route::resource('kontakMember',KontakMemController::class);
 Route::resource('aboutMember',AboutMemController::class);
 // home member
 Route::resource('homeMember',HomeMemController::class);
+// halaman kategori member
+Route::get('homeMember/kategori/{kategori}', 'HomeMemController@buku_kategori');
 
 // login
 Route::post('halLogin',[LoginController::class, 'index'] );

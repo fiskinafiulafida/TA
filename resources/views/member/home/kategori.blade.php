@@ -18,18 +18,19 @@
     <h1 class="col-12 text-center tm-section-title">Welcome pubBrary</h1>
 @endsection
 @section('container')
-    <nav>
-		<?php
-			$kategoris = \DB::table('table_kategori')->get();
-		?>
-		@foreach ($kategoris as $kat)
-			<li class="tm-paging-item"><a href="{{ url ('homeMember/kategori/'.$kat->kategori)}}" class="tm-paging-link">{{ $kat->deskripsi}}</a></li>
-		@endforeach
-	</nav>
+    <!-- <nav>
+		<ul>
+			<li class="tm-paging-item"><a href="#" class="tm-paging-link">Novel</a></li>
+			<li class="tm-paging-item"><a href="#" class="tm-paging-link">Pendidikan</a></li>
+			<li class="tm-paging-item"><a href="#" class="tm-paging-link">Edukasi</a></li>
+			<li class="tm-paging-item"><a href="#" class="tm-paging-link">Dongeng</a></li>
+			<li class="tm-paging-item"><a href="#" class="tm-paging-link">Biografi</a></li>
+		</ul>
+	</nav> -->
 @endsection
 @section('gallery')
-    <div class="tm-gallery-page">
-		@foreach ($home as $member)
+    <div id="tm-gallery-page-novel" class="tm-gallery-page">
+		@foreach ($data as $member)
 		<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
 			<figure>
 				<img src="{{asset('image/'.$member->cover_img)}}" alt="Image" class="img-fluid tm-gallery-img" />
@@ -45,5 +46,5 @@
 			</figure>
 		</article>
 		@endforeach
-	</div> 
+	</div>
 @endsection
