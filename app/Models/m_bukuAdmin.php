@@ -21,5 +21,9 @@ class m_bukuAdmin extends Model
     public function buku(){
         return $this->hasMany(m_bukuAdmin::class);
     }
+
+    public function categories(){
+        return $this->belongsToMany(m_katAdmin::class)->withTimestamps();
+    }
     use HasFactory;
 }

@@ -61,6 +61,8 @@ class BukuController extends Controller
             $buku->judul_buku = $request->judul_buku;
             $buku->isbn  = $request->isbn;
             $buku->kategori   = $request->kategori;
+            $buku->tahu_terbit   = $request->tahu_terbit;
+            $buku->deskripsi   = $request->deskripsi;
             $buku->ketersediaan   = $request->ketersediaan;
             $buku->cover_img  = $file->getClientOriginalName();
             $tujuan_upload = 'image';
@@ -68,7 +70,7 @@ class BukuController extends Controller
             $file->move($tujuan_upload,$file->getClientOriginalName());
             $buku->save();
             
-            return redirect('bukuAdmin')->with('msg','Data Berhasil di Simpan');
+            return redirect()->route('bukuAdmin.index')->with('msg','Data Berhasil di Simpan');
     }
 
     /**
@@ -111,22 +113,24 @@ class BukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate([
             'judul_buku' => 'required',
             'isbn'  => 'required',
             
             ]);
-            $buku = Buku::with('kategori')->where('id_buku', $id)->first();
+            $buku = m_bukuAdmin::with('kategori')->where('id_buku', $id)->first();
             $file = $request->file('cover_img');
             
             $buku = new m_bukuAdmin;
-            $kategori = new m_katAdmin;
-            $ketersediaan = new m_ketersediaanAdmin;
+            $kategori = new m_kategori;
+            $ketersediaan = new m_ketersediaan;
             
             $buku->penerbit = $request->penerbit;
             $buku->judul_buku = $request->judul_buku;
             $buku->isbn  = $request->isbn;
             $buku->kategori   = $request->kategori;
+            $buku->tahun_terbit   = $request->tahun_terbit;
+            $buku->deskripsi   = $request->deskripsi;
             $buku->ketersediaan   = $request->ketersediaan;
             $buku->cover_img  = $file->getClientOriginalName();
             $tujuan_upload = 'image';
@@ -134,9 +138,11 @@ class BukuController extends Controller
             $file->move($tujuan_upload,$file->getClientOriginalName());
             $buku->save();
 
-            m_bukuAdmin::find($id)->update($request->all());
+            Buku::find($id)->update($request->all());
             
-            return redirect('bukuAdmin.index')->with('msg','Data Berhasil diupdate');
+            // return redirect('buku')->with('msg','Data Berhasil diupdate');
+            
+            return redirect()->route('bukuAdmin.index')->with('msg','Data Berhasil diupdate');
         
         // $buku = m_bukuAdmin::find($id);
 

@@ -90,6 +90,14 @@
 													<label class="control-label mb-10 text-left">ISBN Buku</label>
 													<input type="text" name="isbn" value="{{ $buku->isbn }}" class="form-control">
 												</div>
+												<div class="form-group">
+													<label class="control-label mb-10 text-left">Tahun Terbit</label>
+													<input type="text" name="tahun_terbit" value="{{ $buku->tahun_terbit }}" class="form-control">
+												</div>
+												<div class="form-group">
+													<label class="control-label mb-10 text-left">Deskripsi</label>
+													<input type="text" name="deskripsi" value="{{ $buku->deskripsi }}" class="form-control">
+												</div>
                                                 <div class="form-group">
 													<label class="control-label mb-10">Kategori Buku</label>
 													<select class="form-control" id="kategori" name="kategori">
@@ -98,7 +106,7 @@
                                                         @endforeach 
 													</select> 
 												</div>
-                                                 <div class="form-group">
+                                                <div class="form-group">
 													<label class="control-label mb-10">Ketersediaan Buku</label>
 													<select class="form-control" id="ketersediaan" name="ketersediaan">
                                                         @foreach ($ketersediaan as $ket)

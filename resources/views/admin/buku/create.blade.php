@@ -89,6 +89,14 @@
 													<label class="control-label mb-5">ISBN Buku</label>
 													<input type="text" name="isbn" class="form-control">
 												</div>
+												<div class="form-group">
+													<label class="control-label mb-5">Tahun Terbit</label>
+													<input type="text" name="tahu_terbit" class="form-control">
+												</div>
+                                                <div class="form-group">
+													<label class="control-label mb-10 text-left">Deskripsi</label>
+													<textarea class="form-control" name="deskripsi" rows="5"></textarea>
+												</div>
                                                 <div class="form-group">
 													<label class="control-label mb-10">Kategori Buku</label>
 													<select class="form-control" id="kategori" name="kategori">

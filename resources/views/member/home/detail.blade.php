@@ -24,7 +24,7 @@
 @section('inner')
     <article class="col-md-12">
 		<figure class="tm-person">
-			<img src="{{asset('image/'.$show->cover_img)}}" alt="Image" class="img-fluid tm-person-img" />
+			<img src="{{asset('image/'.$show->cover_img)}}" alt="Image" class="img-fluid tm-person-img" style='width:700px; height:350px;'/>
             <center>
 			    <figcaption class="tm-person-description">
 			    	<h1 class="tm-person-title">{{ $show->judul_buku }}</h1>
@@ -32,8 +32,10 @@
 			    	<h4 class="tm-person-name">{{ $show->isbn }}</h4>
                     <h4 class="tm-person-name">{{ $show->kategori }}</h4>
                     <h4 class="tm-person-name">{{ $show->ketersediaan }}</h4>
+                    <h3 class="tm-person-name">{{ $show->tahu_terbit }}</h3>
+                    <h3 class="tm-person-name">{{ $show->deskripsi }}</h3>
 			    	<div>
-			    		<a href="https://fb.com" class="tm-social-link"> <i class="fas fa-cart-plus"></i></a>
+			    		<a href="{{ route('transaksi.show',$show->id_buku) }}" class="tm-social-link"> <i class="fas fa-cart-plus"></i></a>
                         <a href="{{ route('homeMember.index') }}" class="tm-social-link"> <i class="fas fa-window-close"></i></a>
 			    	</div>
 			    </figcaption>

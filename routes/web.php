@@ -12,6 +12,7 @@ use App\Http\Controllers\AboutMemController;
 use App\Http\Controllers\HomeMemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Http\Request; 
 
 /*
@@ -48,7 +49,13 @@ Route::resource('aboutMember',AboutMemController::class);
 // home member
 Route::resource('homeMember',HomeMemController::class);
 // halaman kategori member
-Route::get('homeMember/kategori/{kategori}', 'HomeMemController@buku_kategori');
+// Route::get('homeMember/kategori/{kategori}', 'HomeMemController@buku_kategori');
+// Route::get('/homeMember/{slug}', [
+//     \App\Http\Controllers\HomeMemController::class, 'showPostByCategory'
+// ])->name{posts.category};
+
+// transaksi peminjaman
+Route::resource('transaksi',TransaksiController::class);
 
 // login
 Route::post('halLogin',[LoginController::class, 'index'] );

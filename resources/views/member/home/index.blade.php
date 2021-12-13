@@ -19,17 +19,14 @@
 @endsection
 @section('container')
     <nav>
-		<?php
-			$kategoris = \DB::table('table_kategori')->get();
-		?>
-		@foreach ($kategoris as $kat)
-			<li class="tm-paging-item"><a href="{{ url ('homeMember/kategori/'.$kat->kategori)}}" class="tm-paging-link">{{ $kat->deskripsi}}</a></li>
+		@foreach ($category as $kat)
+			<li class="tm-paging-item"><a href="{{ $kat->deskripsi}}" class="tm-paging-link">{{ $kat->deskripsi}}</a></li>
 		@endforeach
 	</nav>
 @endsection
 @section('gallery')
     <div class="tm-gallery-page">
-		@foreach ($home as $member)
+		@foreach ($buku as $member)
 		<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
 			<figure>
 				<img src="{{asset('image/'.$member->cover_img)}}" alt="Image" class="img-fluid tm-gallery-img" />

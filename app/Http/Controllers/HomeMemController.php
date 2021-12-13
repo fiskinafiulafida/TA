@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\m_bukuAdmin;
+use App\Models\m_katAdmin;
 use Illuminate\Http\Request;
 
 class HomeMemController extends Controller
@@ -11,10 +12,15 @@ class HomeMemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $home = m_bukuAdmin::all();
-        return view('member.home.index', compact('home'));
+
+    public function index(){
+        $category = m_katAdmin::all();
+        $buku = m_bukuAdmin::all();
+
+        return view('member.home.index', [
+            'category' => $category,
+            'buku' => $buku
+        ]);
     }
 
     /**
@@ -93,5 +99,17 @@ class HomeMemController extends Controller
 
         // $data = \DB::table('table_buku_admin')->where('kategori', $kategori_id)->get();
         return view('member.home.kategori', compact('data'));
+    }
+
+    public function showPostByCategory($slug){
+        $posts = m_bukuAdmin::publish()->whereHas('categories', function($query) use ($slug){
+            return $query->where('slug', $slug);
+        });
+        $category = m_katAdmin::where('slug', $slug)->first();
+
+        return view ('home.member.kategori', [
+            'posts' => $posts,
+            'category' => $category
+        ]);
     }
 }
