@@ -9,9 +9,9 @@
 @endsection
 @section('nav')
     <ul class="tm-nav-ul">
-		<li class="tm-nav-li"><a href="homeMember" class="tm-nav-link active">Home</a></li>
-		<li class="tm-nav-li"><a href="aboutMember" class="tm-nav-link">About</a></li>
-		<li class="tm-nav-li"><a href="kontakMember" class="tm-nav-link ">Contact</a></li>
+		<li class="tm-nav-li"><a href="{{ route('homeMember.index') }}" class="tm-nav-link active">Home</a></li>
+		<li class="tm-nav-li"><a href="{{ route('aboutMember.index') }}" class="tm-nav-link ">About</a></li>
+		<li class="tm-nav-li"><a href="{{ route('kontakMember.index') }}" class="tm-nav-link ">Contact</a></li>
 		<li class="tm-nav-li"><a href="{{ route ('transaksi.create')}}" class="tm-nav-link ">PeminjananBuku</a></li>
 		<li class="tm-nav-li"><a href="halLogin2" class="tm-nav-link ">Profil</a></li>
 	</ul>

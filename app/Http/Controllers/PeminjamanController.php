@@ -7,6 +7,7 @@ use App\Models\m_bukuAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 
 class PeminjamanController extends Controller
@@ -37,7 +38,9 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        //
+        $transaksi = m_transaksi::all();
+        $pdf = PDF::loadview('admin.peminjaman.peminjaman_pdf', ['transaksi' => $transaksi]);
+        return $pdf->stream();
     }
 
     /**
@@ -85,6 +88,7 @@ class PeminjamanController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+                'id_status' => 'sometimes',
             ]);
             
             $transaksi = new m_transaksi;
@@ -117,4 +121,5 @@ class PeminjamanController extends Controller
         $members->status = $request->status;
         $members->save();
     }
+    
 }

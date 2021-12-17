@@ -12,6 +12,8 @@
 		<li class="tm-nav-li"><a href="{{ route('homeMember.index') }}" class="tm-nav-link ">Home</a></li>
 		<li class="tm-nav-li"><a href="{{ route('aboutMember.index') }}" class="tm-nav-link active">About</a></li>
 		<li class="tm-nav-li"><a href="{{ route('kontakMember.index') }}" class="tm-nav-link ">Contact</a></li>
+		<li class="tm-nav-li"><a href="{{ route ('transaksi.create') }}" class="tm-nav-link ">PeminjananBuku</a></li>
+		<li class="tm-nav-li"><a href="halLogin2" class="tm-nav-link ">Profil</a></li>
 	</ul>
 @endsection
 @section('header')

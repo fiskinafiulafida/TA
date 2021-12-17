@@ -81,8 +81,8 @@
 												<div class="form-group">
 													<label class="control-label mb-10">Status Peminjaman Buku</label>
 													<select class="form-control" id="id_status" name="id_status">
-                                                        @foreach ($transaksi as $kat)
-                                                            <option value="{{ $kat->id_status}}">{{ $kat->deskripsi }}</option>
+                                                        @foreach ($transaksi as $sd)
+                                                            <option value="{{ $sd->id_status}}">{{ $sd->deskripsi }}</option>
                                                         @endforeach 
 													</select> 
 												</div>

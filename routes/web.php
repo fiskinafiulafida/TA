@@ -58,7 +58,6 @@ Route::get('/homeMember/detailBuku/{id_buku}', [HomeMemController::class, 'detai
 Route::resource('transaksi',TransaksiController::class);
 // transaksi admin
 Route::resource('peminjamanAdmin',PeminjamanController::class);
-Route::get('/changeStatus',[PeminjamanController::class, 'changeMemberStatus'])->name('changeStatus');
 
 // login
 Route::post('halLogin',[LoginController::class, 'index'] );
