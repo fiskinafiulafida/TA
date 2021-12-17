@@ -6,6 +6,7 @@ use App\Models\m_ketersediaanAdmin;
 use App\Models\m_katAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class BukuController extends Controller
 {
@@ -114,91 +115,44 @@ class BukuController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul_buku' => 'required',
-            'isbn'  => 'required',
-            
+            'penerbit' => 'sometimes',
+            'judul_buku' => 'sometimes',
+            'isbn' => 'sometimes',
+            'tahu_terbit' => 'sometimes',
+            'deskripsi'  => 'sometimes',
+            'kategori' => 'sometimes',
+            'ketersediaan' => 'sometimes',
+            'cover_img' => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:1024',
             ]);
+
             $buku = m_bukuAdmin::with('kategori')->where('id_buku', $id)->first();
-            $file = $request->file('cover_img');
-            
-            $buku = new m_bukuAdmin;
-            $kategori = new m_kategori;
-            $ketersediaan = new m_ketersediaan;
+            $kategori = new m_katAdmin;
+            $ketersediaan = new m_ketersediaanAdmin;
             
             $buku->penerbit = $request->penerbit;
             $buku->judul_buku = $request->judul_buku;
             $buku->isbn  = $request->isbn;
-            $buku->kategori   = $request->kategori;
-            $buku->tahun_terbit   = $request->tahun_terbit;
+            
+            $buku->tahu_terbit   = $request->tahu_terbit;
+            
             $buku->deskripsi   = $request->deskripsi;
+            $buku->kategori   = $request->kategori;
             $buku->ketersediaan   = $request->ketersediaan;
-            $buku->cover_img  = $file->getClientOriginalName();
-            $tujuan_upload = 'image';
             
-            $file->move($tujuan_upload,$file->getClientOriginalName());
+            if($request->hasFile('cover_img')){
+                $path = 'image/'.$buku->cover_img;
+                if(File::exists($path)){
+                    File::delete($path);
+                }
+                $file = $request->file('cover_img');
+                $ext = $file->getClientOriginalExtension();
+                $image_name = time().'.'.$ext;
+                $file->move('image/', $image_name);
+                $buku->cover_img = $image_name;
+            }
+            
             $buku->save();
-
-            Buku::find($id)->update($request->all());
-            
-            // return redirect('buku')->with('msg','Data Berhasil diupdate');
-            
             return redirect()->route('bukuAdmin.index')->with('msg','Data Berhasil diupdate');
-        
-        // $buku = m_bukuAdmin::find($id);
-
-        // $buku->title = $request->title;
-        // $buku->content = $request->content;
-
-        // if($buku->cover_img && file_exists(storage_path('app/public/' .$buku->cover_img))){
-        //     \Storage::delete('public/' . $buku->cover_img);
-        // }
-
-        // $image_name = $request->file('image')->store('image','public');
-        // $buku->cover_img = $image_name;
-
-        // $buku->save();
-        // return redirect('bukuAdmin.index')->with('msg','Data Berhasil diupdate');
-
-            // $rules = [
-            //     'penerbit' => 'required',
-            //     'judul_buku' => 'required',
-            //     'isbn' => 'required',
-            //     'kategori' => 'required',
-            //     'cover_img' => 'required',
-            //     'ketersediaan' => 'required'
-            // ];
-            
-            // $validatedData = $request->validate($rules);
-
-            // m_bukuAdmin::where('id_buku', $buku->id)->update($validatedData);
-            
-            // return redirect('bukuAdmin.index')->with('msg','Data Berhasil diupdate');
-            // $request->validate([
-            //     'penerbit' => 'required',
-            //     'judul_buku' => 'required',
-            //     'isbn' => 'required',
-            //     'kategori' => 'required',
-            //     'ketersediaan' => 'required',
-            //     'cover_img' => 'image|mimes:jpeg,png,jpg|max:2048'
-            // ]);
-            // $employee = m_bukuAdmin::where('id_buku', Auth::user()->id)->first();
-
-            // if ($request->hasfile('cover_img')){
-            //     $file = $request->file('cover_img');
-            //     $extension = $file->getClientOriginalExtension();
-            //     $filename = md5(time()).'.'.$extension;
-            //     $file->move(public_path().'\image',$filename);
-            //     $employee->cover_img=$filename;
-            // } else {
-            //     return $request;
-            //     $employee->cover_img='';
-            // }
-
-            // if($employee->save()){
-            //     return redirect()->route('bukuAdmin.index')->withSuccess('S-a incarcat cu success!');
-            // }else{
-            //     return redirect()->route('bukuAdmin.edit')->withDanger('Nu s-a incarcat! A aparut o eroare.');
-            // }
     }
 
     /**

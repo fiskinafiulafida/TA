@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Cviebrock\EloquentSluggable\Sluggable;
 
-class m_katadmin extends Model
+class m_katAdmin extends Model
 {
     protected $table = 'table_kategori';
     protected $primaryKey = 'kategori';
@@ -17,5 +18,19 @@ class m_katadmin extends Model
     public function buku(){
         return $this->hasMany(m_bukuAdmin::class);
     }
+
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return[
+            'slug' => [
+                'source' => 'deskripsi'
+            ]
+        ];
+    }
+
     use HasFactory;
 }

@@ -51,14 +51,12 @@ https://templatemo.com/tm-539-simple-house
 
 			<!-- Gallery -->
 			<div class="row tm-gallery">
-				@yield('gallery')
+				@yield('konten')
 			</div>
 			<div class="tm-section tm-container-inner">
 				@yield('maps')
 			</div>
-            <!-- <div class="tm-container-inner-2 tm-map-section"> -->
-                
-			<!-- </div> -->
+            
 		</main>
 
 		<footer class="tm-footer text-center">

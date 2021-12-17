@@ -1,6 +1,6 @@
 @extends('layouts/mainAdmin')
 
-@section('title','Halaman Edit Kontak ')
+@section('title','Halaman Edit Member ')
 @section('nav')
     <div class="mobile-only-brand pull-left">
 		<div class="nav-header pull-left">
@@ -70,36 +70,28 @@
 					<div class="row">
 						<div class="col-sm-12 col-xs-12">
 							<div class="form-wrap">
-                                <form action="{{ route('kontakAdmin.update', $edit->id) }}" method="POST">
+                                <form action="{{ route('peminjamanAdmin.update', $transaksi->id_transaksi) }}" method="POST">
                                     @csrf
                                     @method('PUT')
 									<div class="form-body">
-										<h6 class="txt-dark capitalize-font"><i class="fa fa-credit-card-alt"></i> Form Edit Kontak</h6>
+										<h6 class="txt-dark capitalize-font"><i class="fa fa-credit-card-alt"></i> Form Edit Member</h6>
 										<hr class="light-grey-hr"/>
 										<div class="row">
 											<div class="col-md-12 ">
 												<div class="form-group">
-													<label class="control-label mb-5"> Nama : </label>
-													<input type="text" name="nama" value="{{ $edit->nama }}" class="form-control">
-												</div>
-                                                <div class="form-group">
-													<label class="control-label mb-10 text-left">Alamat : </label>
-													<input type="text" name="alamat" value="{{ $edit->alamat }}" class="form-control">
-												</div>
-                                                <div class="form-group">
-													<label class="control-label mb-10 text-left">No Telephone : </label>
-													<input type="text" name="noTlp" value="{{ $edit->noTlp }}" class="form-control">
-												</div>
-                                                <div class="form-group">
-													<label class="control-label mb-10 text-left">Link : </label>
-													<input type="text" name="link" value="{{ $edit->link }}" class="form-control">
+													<label class="control-label mb-10">Status Peminjaman Buku</label>
+													<select class="form-control" id="id_status" name="id_status">
+                                                        @foreach ($transaksi as $kat)
+                                                            <option value="{{ $kat->id_status}}">{{ $kat->deskripsi }}</option>
+                                                        @endforeach 
+													</select> 
 												</div>
 											</div>
 										</div>
 									</div>
 									<div class="form-actions mt-10">
 										<button type="submit" class="btn btn-success  mr-10"> Save</button>
-                                        <a class="btn  btn-primary btn-rounded" href="{{ route ('kontakAdmin.index') }}">Cancel</a>
+                                        <a class="btn  btn-primary btn-rounded" href="{{ route ('peminjamanAdmin.index') }}">Cancel</a>
 									</div>
 								</form>
 							</div>

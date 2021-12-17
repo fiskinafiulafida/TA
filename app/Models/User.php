@@ -23,6 +23,9 @@ class User extends Authenticatable
         'password',
         'level',
     ];
+    public function transaksi(){
+        return $this->hasMany(m_transaksi::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

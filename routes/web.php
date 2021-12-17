@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeMemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\PeminjamanController;
 use Illuminate\Http\Request; 
 
 /*
@@ -47,15 +48,17 @@ Route::resource('kontakMember',KontakMemController::class);
 // about member
 Route::resource('aboutMember',AboutMemController::class);
 // home member
-Route::resource('homeMember',HomeMemController::class);
+// Route::resource('homeMember',HomeMemController::class);
 // halaman kategori member
-// Route::get('homeMember/kategori/{kategori}', 'HomeMemController@buku_kategori');
-// Route::get('/homeMember/{slug}', [
-//     \App\Http\Controllers\HomeMemController::class, 'showPostByCategory'
-// ])->name{posts.category};
+Route::get('/homeMember', [HomeMemController::class, 'index'])->name('homeMember.index');
+Route::get('/homeMember/showPostByCategory/{kategori}', [HomeMemController::class, 'showPostByCategory'])->name('homeMember.showPostByCategory');
+Route::get('/homeMember/detailBuku/{id_buku}', [HomeMemController::class, 'detailBuku'])->name('homeMember.detailBuku');
 
-// transaksi peminjaman
+// transaksi peminjaman member
 Route::resource('transaksi',TransaksiController::class);
+// transaksi admin
+Route::resource('peminjamanAdmin',PeminjamanController::class);
+Route::get('/changeStatus',[PeminjamanController::class, 'changeMemberStatus'])->name('changeStatus');
 
 // login
 Route::post('halLogin',[LoginController::class, 'index'] );

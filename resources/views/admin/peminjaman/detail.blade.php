@@ -1,6 +1,6 @@
 @extends('layouts/mainAdmin')
 
-@section('title','Halaman Detail Kontak')
+@section('title','Halaman Detail Member')
 @section('nav')
     <div class="mobile-only-brand pull-left">
 		<div class="nav-header pull-left">
@@ -73,44 +73,84 @@
 					<div class="form-wrap">
 						<form class="form-horizontal" role="form">
 							<div class="form-body">
-								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-account mr-10"></i>Detail About</h6>
+								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-account mr-10"></i>Detail Peminjaman Buku Member</h6>
 								<hr class="light-grey-hr"/>
 								<div class="row">
-									<div class="col-md-6">
+                                    <div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label col-md-3"> Nama : </label>
+											<label class="control-label col-md-3"> ID Transaksi: </label>
 											<div class="col-md-9">
-												<p class="form-control-static"> {{$show->nama}} </p>
+												<p class="form-control-static"> {{$show->id_transaksi}} </p>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label col-md-3"> Alamat : </label>
+											<label class="control-label col-md-3"> ID Member : </label>
 											<div class="col-md-9">
-												<p class="form-control-static"> {{$show->alamat}} </p>
+												<p class="form-control-static"> {{$show->id}} </p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-3"> ID Buku : </label>
+											<div class="col-md-9">
+												<p class="form-control-static"> {{$show->id_buku}} </p>
 											</div>
 										</div>
 									</div>
                                     <div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label col-md-3"> No Telephone : </label>
+											<label class="control-label col-md-3"> Judul Buku : </label>
 											<div class="col-md-9">
-												<p class="form-control-static"> {{$show->noTlp}} </p>
+												<p class="form-control-static"> {{$show->judul_buku}} </p>
 											</div>
 										</div>
 									</div>
                                     <div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label col-md-3"> Link : </label>
+											<label class="control-label col-md-3"> ISBN Buku : </label>
 											<div class="col-md-9">
-												<p class="form-control-static"> {{$show->link}} </p>
+												<p class="form-control-static"> {{$show->isbn}} </p>
+											</div>
+										</div>
+									</div>
+                                    <div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-3"> Tanggal Peminjaman : </label>
+											<div class="col-md-9">
+												<p class="form-control-static"> {{$show->tgl_pinjam}} </p>
+											</div>
+										</div>
+									</div>
+                                    <div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-3"> Tanggal Pengembalian : </label>
+											<div class="col-md-9">
+												<p class="form-control-static"> {{$show->tgl_kembali}} </p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-3"> Status Peminjaman Buku : </label>
+											<div class="col-md-9">
+												<p class="form-control-static"> {{$show->id_status}} </p>
+											</div>
+										</div>
+									</div>
+                                    <div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-3"> Create : </label>
+											<div class="col-md-9">
+												<p class="form-control-static"> {{$show->created_at}} </p>
 											</div>
 										</div>
 									</div>
 								</div>
                                 <div>
-                                   <a class="btn  btn-primary btn-rounded" href="{{ route ('kontakAdmin.index') }}">Cancel</a>
+                                   <a class="btn  btn-primary btn-rounded" href="{{ route ('peminjamanAdmin.index') }}">Cancel</a>
                                 </div>
 						</form>
 					</div>

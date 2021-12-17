@@ -52,7 +52,7 @@
     		<a href="{{ route ('memberAdmin.index') }}"><div class="pull-left"><i class=" fa fa-snapchat mr-20"></i><span class="right-nav-text">Data Member</span></div><div class="clearfix"></div></a>
     	</li>
 		<li>
-    		<a href="peminjamanAdmin"><div class="pull-left"><i class="fa fa-credit-card-alt mr-20"></i><span class="right-nav-text"> Peminjaman Buku</span></div><div class="clearfix"></div></a>
+    		<a href="{{ route ('peminjamanAdmin.index') }}"><div class="pull-left"><i class="fa fa-credit-card-alt mr-20"></i><span class="right-nav-text"> Peminjaman Buku</span></div><div class="clearfix"></div></a>
     	</li>
         <li>
     		<a href="{{ route ('ketersediaanAdmin.index') }}"><div class="pull-left"><i class="fa fa-credit-card-alt mr-20"></i><span class="right-nav-text"> Ketersediaan Buku</span></div><div class="clearfix"></div></a>
@@ -92,7 +92,7 @@
 												</div>
 												<div class="form-group">
 													<label class="control-label mb-10 text-left">Tahun Terbit</label>
-													<input type="text" name="tahun_terbit" value="{{ $buku->tahun_terbit }}" class="form-control">
+													<input type="text" name="tahu_terbit" value="{{ $buku->tahu_terbit }}" class="form-control">
 												</div>
 												<div class="form-group">
 													<label class="control-label mb-10 text-left">Deskripsi</label>
@@ -116,7 +116,7 @@
 												</div>
                                                 <div class="form-group">
                                                     <label for="cover_img">Cover Buku</label>
-                                                    <input type="file" name="cover_img" value="{{ $buku->cover_img }}">
+                                                    <input type="file" name="cover_img" id= "cover_img" value="{{ $buku->cover_img }}">
                                                 </div>
 											</div>
 										</div>

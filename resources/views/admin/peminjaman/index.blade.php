@@ -1,6 +1,6 @@
 @extends('layouts/mainAdmin')
 
-@section('title','Halaman Kontak Admin')
+@section('title','Halaman Member Admin')
 @section('nav')
     <div class="mobile-only-brand pull-left">
 		<div class="nav-header pull-left">
@@ -69,7 +69,7 @@
 		<!-- Title -->
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			  <h5 class="txt-dark">Data Kontak</h5>
+			  <h5 class="txt-dark">Data Peminjaman Buku Member</h5>
 			</div>
 			<!-- Breadcrumb -->
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -85,9 +85,6 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="panel panel-default card-view">
-					<td>
-						<a class="btn  btn-primary btn-rounded" href="{{ route ('kontakAdmin.create') }}">Tambah Data</a>
-					</td>
 					<div class="panel-wrapper collapse in">
 						<div class="panel-body">
 							<div class="table-wrap">
@@ -95,33 +92,56 @@
 									<table id="datable_1" class="table table-hover display" >
 										<thead>
 											<tr>
-												<th>Nama </th>
-												<th>Alamat </th>
-                                                <th>No Telephone </th>
-                                                <th>Lokasi</th>
+												<th>Id Transaksi</th>
+												<th>Id Member</th>
+												<th>Id Buku </th>
+												<th>Judul Buku</th>
+												<th>ISBN Buku</th>
+                                                <th>Penerbit Buku</th>
+                                                <th>Tanggal Peminjaman</th>
+                                                <th>Tanggal Pengembalian</th>
+												<th>Status</th>
 												<th>Aksi</th>
 											</tr>
 										</thead>
 										<tfoot>
 											<tr>
-												<th>Nama </th>
-												<th>Alamat </th>
-                                                <th>No Telephone </th>
-                                                <th>Lokasi</th>
+												<th>Id Transaksi</th>
+												<th>Id Member</th>
+												<th>Id Buku </th>
+												<th>Judul Buku</th>
+												<th>ISBN Buku</th>
+                                                <th>Penerbit Buku</th>
+                                                <th>Tanggal Peminjaman</th>
+                                                <th>Tanggal Pengembalian</th>
+												<th>Status</th>
 												<th>Aksi</th>
 											</tr>
 										</tfoot>
 										<tbody>
-											@foreach ($index as $kontak)
+											@foreach ($index as $member)
 											<tr>
-                                                <td>{{ $kontak->nama }}</td>
-												<td>{{ $kontak->alamat }}</td>
-												<td>{{ $kontak->noTlp }}</td>
-												<td>{{ $kontak->link }}</td>
+                                                <td>{{ $member->id_transaksi }}</td>
+												<td>{{ $member->id }}</td>
+												<td>{{ $member->id_buku }}</td>
+												<td>{{ $member->judul_buku }}</td>
+												<td>{{ $member->isbn }}</td>
+                                                <td>{{ $member->penerbit }}</td>
+                                                <td>{{ $member->tgl_pinjam }}</td>
+                                                <td>{{ $member->tgl_kembali }}</td>
 												<td>
-													<form action="{{ route('kontakAdmin.destroy', $kontak->id) }}" method="POST">
-													    <a href="{{ route('kontakAdmin.show',$kontak->id) }}" class="btn  btn-success btn-rounded">Detail</a>
-													    <a href="{{ route('kontakAdmin.edit',$kontak->id) }}" class="btn btn-warning btn-rounded">Edit</a>
+													<!-- <label class="switch">
+													  <input type="checkbox" checked>
+													  <span class="slider round"></span>
+													</label> -->
+                        							   <!-- <input data-id = "{{$member->id_status}}" class="toggle-class" type= "checkbox"
+													   data-onstyle = "success" data-offstyle = "danger" data-toogle ="toggle" data-on = "Active" data-off = "Inactive"
+                        							    {{$member->status ? 'checked' : ''}} > -->
+												</td>
+												<td>
+													<form action="{{ route('peminjamanAdmin.destroy', $member->id_transaksi) }}" method="POST">
+													    <a href="{{ route('peminjamanAdmin.show',$member->id_transaksi) }}" class="btn  btn-success btn-rounded">Detail</a>
+														<a href="{{ route('peminjamanAdmin.edit',$member->id_transaksi) }}" class="btn  btn-primary btn-rounded">Edit</a>
 													    @csrf
                     								    @method('DELETE')
 													    <button type="submit" class="btn btn-danger btn-rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
@@ -139,6 +159,85 @@
 			</div>
 		</div>
 	</div>
+	<style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+	<!-- <script>
+		$(function(){
+			$('.toggle-class').change(function(){
+				var status = $(this).prop('checked') == true ? 1 : 2;
+				var member_id = $(this).data('id_status');
+
+				s.ajax({
+					type: "GET",
+					dataType : "json",
+					url : "/changeStatus",
+					data : {'status':status, 'id_status' : id_status},
+					success: function(data){
+						console.log('Success')
+					}
+				});
+			});
+		})
+	</script> -->
 @endsection
 
 @section('footer')

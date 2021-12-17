@@ -52,7 +52,7 @@
     		<a href="{{ route ('memberAdmin.index') }}"><div class="pull-left"><i class=" fa fa-snapchat mr-20"></i><span class="right-nav-text">Data Member</span></div><div class="clearfix"></div></a>
     	</li>
 		<li>
-    		<a href="peminjamanAdmin"><div class="pull-left"><i class="fa fa-credit-card-alt mr-20"></i><span class="right-nav-text"> Peminjaman Buku</span></div><div class="clearfix"></div></a>
+    		<a href="{{ route ('peminjamanAdmin.index') }}"><div class="pull-left"><i class="fa fa-credit-card-alt mr-20"></i><span class="right-nav-text"> Peminjaman Buku</span></div><div class="clearfix"></div></a>
     	</li>
         <li>
     		<a href="{{ route ('ketersediaanAdmin.index') }}"><div class="pull-left"><i class="fa fa-credit-card-alt mr-20"></i><span class="right-nav-text"> Ketersediaan Buku</span></div><div class="clearfix"></div></a>
@@ -105,6 +105,22 @@
 											<label class="control-label col-md-3"> Id Kategori : </label>
 											<div class="col-md-9">
 												<p class="form-control-static"> {{$show->kategori}} </p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-3"> Tahun Terbit : </label>
+											<div class="col-md-9">
+												<p class="form-control-static"> {{$show->tahu_terbit}} </p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-3"> Deskripsi : </label>
+											<div class="col-md-9">
+												<p class="form-control-static"> {{$show->deskripsi}} </p>
 											</div>
 										</div>
 									</div>

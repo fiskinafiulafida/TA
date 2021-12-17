@@ -5,7 +5,6 @@
     <img src="{{asset('member/img/simple-house-logo.png')}}" alt="Logo" class="tm-site-logo" /> 
 	<div class="tm-site-text-box">
 		<h1 class="tm-site-title">pubBrary</h1>
-		<!-- <h6 class="tm-site-description">new restaurant template</h6>	 -->
 	</div>
 @endsection
 @section('nav')

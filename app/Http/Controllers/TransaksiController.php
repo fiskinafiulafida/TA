@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\m_bukuAdmin;
 use App\Models\m_katAdmin;
 use App\Models\m_login;
-use App\Models\Transaksi;
-use App\Models\users;
+use App\Models\User;
+use App\Models\m_transaksi;
+use App\Models\m_status;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -18,16 +19,8 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = DB::table('table_transaksi')
-        ->join('table_buku_admin', 'table_buku_admin.id_buku', '=', 'table_transaksi.id_buku')
-        ->join('table_kategori', 'table_kategori.kategori', '=', 'table_buku_admin.kategori')
-        ->join('users', 'table_transaksi.id', '=', 'users.id')
-        ->select('table_transaksi.id','users.name','table_buku_admin.id_buku',
-        'table_buku_admin.judul_buku', 
-        'table_buku_admin.isbn', 'table_kategori.deskripsi as kategori',
-        'table_transaksi.tgl_pinjam','table_transaksi.tgl_kembali')
-        ->get();
-        return view('member.transaksi.index', compact('transaksi'));
+        $index = m_transaksi::all();
+        return view('member.transaksi.berhasil', compact('index'));
     }
 
     /**
@@ -37,9 +30,10 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        $trans = Transaksi::all();
-        
-        return view('member.transaksi.index', compact('trans'));
+        $user = User::all();
+        $buku = m_bukuAdmin::all();
+        $status = m_status::all();
+        return view('member.transaksi.index', compact('user','buku','status'));
     }
 
     /**
@@ -50,18 +44,29 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'id_transaksi' => 'required',
-            'id' => 'required',
-            'name' => 'required',
-            'id_buku' => 'required',
-            'tgl_pinjam' => 'required',
-            'tgl_kembali' => 'required',
-        ]);
-        $user = new users;
-        Transaksi::create($request->all());
-
-        return redirect()->route('transaksi.index')->with('succes','Data Berhasil di Input');
+        $this->validate($request, [
+            'judul_buku' => 'required',
+            'isbn'  => 'required',
+            
+            ]);
+            
+            $transaksi = new m_transaksi;
+            $buku = new m_bukuAdmin;
+            $user = new User;
+            $status = new m_status;
+            
+            $transaksi->id_buku = $request->id_buku;
+            $transaksi->id_status = $request->id_status;
+            $transaksi->penerbit = $request->penerbit;
+            $transaksi->judul_buku = $request->judul_buku;
+            $transaksi->isbn  = $request->isbn;
+            $transaksi->id   = $request->id;
+            $transaksi->tgl_pinjam   = $request->tgl_pinjam;
+            $transaksi->tgl_kembali   = $request->tgl_kembali;
+            
+            $transaksi->save();
+            
+            return redirect()->route('transaksi.index')->with('msg','Data Berhasil di Simpan');     
     }
 
     /**
@@ -84,7 +89,8 @@ class TransaksiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = Transaksi::find($id);
+        return view('member.transaksi.berhasil', compact('edit'));
     }
 
     /**

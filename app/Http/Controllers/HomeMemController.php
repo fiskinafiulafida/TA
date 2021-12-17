@@ -14,12 +14,12 @@ class HomeMemController extends Controller
      */
 
     public function index(){
-        $category = m_katAdmin::all();
-        $buku = m_bukuAdmin::all();
+        $kategori = m_katAdmin::all();
+        // $buku = m_bukuAdmin::all();
 
         return view('member.home.index', [
-            'category' => $category,
-            'buku' => $buku
+            'kategori' => $kategori,
+            // 'buku' => $buku
         ]);
     }
 
@@ -50,10 +50,10 @@ class HomeMemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function detailBuku($id)
     {
-        $show = m_bukuAdmin::find($id);
-        return view('member.home.detail', compact('show'));
+        $member = m_bukuAdmin::where('id_buku', '=', $id)->first();
+        return view('member.home.detail', compact('member'));
     }
 
     /**
@@ -90,26 +90,8 @@ class HomeMemController extends Controller
         //
     }
 
-    public function buku_kategori($kategori){
-        $data = DB::table('table_buku_admin')
-        ->join('table_kategori', 'table_buku_admin.kategori', '=', 'table_kategori.kategori')->where('kategori', $kategori)
-        ->join('table_ketersediaan_admin', 'table_buku_admin.ketersediaan', '=', 'table_ketersediaan_admin.ketersediaan')
-        ->select('table_buku_admin.id_buku','table_buku_admin.penerbit','table_buku_admin.judul_buku', 'table_buku_admin.isbn', 
-        'table_kategori.deskripsi as kategori','table_ketersediaan_admin.deskripsi as ketersediaan', 'table_buku_admin.cover_img')->get();
-
-        // $data = \DB::table('table_buku_admin')->where('kategori', $kategori_id)->get();
-        return view('member.home.kategori', compact('data'));
-    }
-
-    public function showPostByCategory($slug){
-        $posts = m_bukuAdmin::publish()->whereHas('categories', function($query) use ($slug){
-            return $query->where('slug', $slug);
-        });
-        $category = m_katAdmin::where('slug', $slug)->first();
-
-        return view ('home.member.kategori', [
-            'posts' => $posts,
-            'category' => $category
-        ]);
+    public function showPostByCategory($kategori){
+        $buku = m_bukuAdmin::join('table_kategori', 'table_kategori.kategori', '=' , 'table_buku_admin.kategori')->where('table_buku_admin.kategori', '=', $kategori)->get();
+        return view('member.home.kategori', compact('buku'));
     }
 }

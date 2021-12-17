@@ -18,10 +18,14 @@ class CreateTableBukuAdmin extends Migration
             $table->string('penerbit', 40);
             $table->string('judul_buku', 40);
             $table->string('isbn', 100);
-            $table->integer('kategori');
-            $table->integer('ketersediaan');
+            $table->string('tahu_terbit');
+            $table->text('deskripsi');
+            $table->unsignedBigInteger('kategori')->nullable();
+            $table->unsignedBigInteger('ketersediaan')->nullable();
             $table->string('cover_img', 50);
-            $table->timestamps();
+            $table->timestamps(); 
+            $table->foreign('kategori')->references('kategori')->on('table_kategori');
+            $table->foreign('ketersediaan')->references('ketersediaan')->on('table_ketersediaan_admin');
         });
     }
 
