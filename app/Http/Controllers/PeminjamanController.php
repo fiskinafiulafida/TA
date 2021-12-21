@@ -74,8 +74,9 @@ class PeminjamanController extends Controller
      */
     public function edit($id)
     {
-        $transaksi = m_transaksi::join( 'table_status', 'table_transaksi_member.id_status', '=' , 'table_status.id_status')->where('id_transaksi', $id)->first();
-        return view('admin.peminjaman.edit', compact('transaksi'));
+        $edit = m_transaksi::select('id_transaksi')->where('id_transaksi', '=' , $id)->first();
+        $status = m_status::select('id_status', 'deskripsi')->get();
+        return view('admin.peminjaman.edit', ['edit' => $edit, 'status' => $status]);
     }
 
     /**
@@ -90,12 +91,7 @@ class PeminjamanController extends Controller
         $this->validate($request, [
                 'id_status' => 'sometimes',
             ]);
-            
-            $transaksi = new m_transaksi;
-            $buku = new m_bukuAdmin;
-            $user = new User;
-            $status = new m_status;
-            
+            $transaksi = m_transaksi::where('id_transaksi', $id)->first();
             $transaksi->id_status = $request->id_status;
             
             $transaksi->save();
@@ -115,11 +111,11 @@ class PeminjamanController extends Controller
         return redirect()->route('peminjamanAdmin.index')-> with('success', 'Peminjaman Berhasil Dihapus');
     }
 
-    public function changeMemberStatus(Request $request)
-    {
-        $members = m_transaksi::find($request->id_status);
-        $members->status = $request->status;
-        $members->save();
-    }
+    // public function changeMemberStatus(Request $request)
+    // {
+    //     $members = m_transaksi::find($request->id_status);
+    //     $members->status = $request->status;
+    //     $members->save();
+    // }
     
 }

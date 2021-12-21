@@ -12,10 +12,11 @@ class m_status extends Model
     protected $primaryKey = 'id_status';
 
     protected $fillable = [
+        'id_status',
         'deskripsi',
     ];
     public function transaksi(){
-        return $this->hasMany(m_transaksi::class);
+        return $this->hasMany(m_transaksi::class, 'id_status');
     }
 
     use HasFactory;

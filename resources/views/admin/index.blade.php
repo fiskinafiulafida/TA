@@ -49,7 +49,7 @@
     		<a href="{{ route ('kategori.index') }}"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">Kategori Buku</span></div><div class="clearfix"></div></a>
     	</li>
 		<li>
-    		<a href="{{ route ('memberAdmin.index') }}"><div class="pull-left"><i class=" fa fa-snapchat mr-20"></i><span class="right-nav-text">Data Member</span></div><div class="clearfix"></div></a>
+    		<a href="{{ route ('memberAdmin.index') }}"><div class="pull-left"><i class=" fa fa-snapchat mr-20"></i><span class="right-nav-text">Data User</span></div><div class="clearfix"></div></a>
     	</li>
 		<li>
     		<a href="{{ route ('peminjamanAdmin.index') }}"><div class="pull-left"><i class="fa fa-credit-card-alt mr-20"></i><span class="right-nav-text"> Peminjaman Buku</span></div><div class="clearfix"></div></a>
@@ -119,7 +119,6 @@
 												<td>{{ $kat->created_at }}</td>
 												<td>{{ $kat->updated_at }}</td>
 												<td>
-													<!-- <form action="{{ route('kategori.destroy',$kat->kategori) }}" method="POST"> -->
 														<form action="{{ route('kategori.destroy',$kat->kategori) }}" method="POST">
 
 														<a href="{{ route('kategori.show',$kat->kategori) }}" class="btn  btn-success btn-rounded">Detail</a>
@@ -129,7 +128,6 @@
                     									@method('DELETE')
 														<button type="submit" class="btn btn-danger btn-rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
 														</form>
-													<!-- </form> -->
 												</td>
 											</tr>
 											@endforeach

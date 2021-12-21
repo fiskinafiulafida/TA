@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\m_status;
 
 class m_transaksi extends Model
 {
@@ -12,6 +13,7 @@ class m_transaksi extends Model
     protected $primaryKey = 'id_transaksi';
 
     protected $fillable = [
+        'id_transaksi',
         'id',
         'id_buku',
         'id_status',
@@ -30,7 +32,7 @@ class m_transaksi extends Model
     }
 
     public function status(){
-        return $this->belongsTo(m_status::class);
+        return $this->belongsTo(m_status::class, 'id_status');
     }
 
     use HasFactory;

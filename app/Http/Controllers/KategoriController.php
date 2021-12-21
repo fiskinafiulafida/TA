@@ -92,10 +92,14 @@ class KategoriController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(m_katadmin $kategori)
+
+    public function destroy($id)
     {
-        $kategori->delete();
-        return redirect()->route('kategori.index')->with('succes','Siswa Berhasil di Hapus');
+        {
+            m_katadmin::find($id)->delete();
+            return redirect()->route('kategori.index')-> with('success', 'About Berhasil Dihapus');
+        }
+
     }
 
     

@@ -70,7 +70,7 @@
 					<div class="row">
 						<div class="col-sm-12 col-xs-12">
 							<div class="form-wrap">
-                                <form action="{{ route('peminjamanAdmin.update', $transaksi->id_transaksi) }}" method="POST">
+                                <form action="{{ route('peminjamanAdmin.update', $edit->id_transaksi) }}" method="POST">
                                     @csrf
                                     @method('PUT')
 									<div class="form-body">
@@ -81,7 +81,7 @@
 												<div class="form-group">
 													<label class="control-label mb-10">Status Peminjaman Buku</label>
 													<select class="form-control" id="id_status" name="id_status">
-                                                        @foreach ($transaksi as $sd)
+                                                        @foreach ($status as $sd)
                                                             <option value="{{ $sd->id_status}}">{{ $sd->deskripsi }}</option>
                                                         @endforeach 
 													</select> 

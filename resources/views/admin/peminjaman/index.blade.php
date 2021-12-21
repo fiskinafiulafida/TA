@@ -86,7 +86,7 @@
 			<div class="col-sm-12">
 				<div class="panel panel-default card-view">
 					<td>
-						<a class="btn  btn-info btn-rounded" href="{{ route('peminjamanAdmin.create') }}">Cetak Data Peminjaman Member</a>
+						<a class="btn  btn-info btn-rounded" href="{{ route('peminjamanAdmin.create') }}">Cetak PDF Data Peminjaman Member</a>
 					</td>
 					<div class="panel-wrapper collapse in">
 						<div class="panel-body">
@@ -104,7 +104,6 @@
                                                 <th>Penerbit Buku</th>
                                                 <th>Tanggal Peminjaman</th>
                                                 <th>Tanggal Pengembalian</th>
-												<th>Status</th>
 												<th>Aksi</th>
 											</tr>
 										</thead>
